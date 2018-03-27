@@ -49,27 +49,17 @@
             }
         }
 
-        function shuffle(array) {
-            var copy = [],
-                n = array.length,
-                i;
-
-            // While there remain elements to shuffle…
-            while (n) {
-
-                // Pick a remaining element…
-                i = Math.floor(Math.random() * array.length);
-
-                // If not already shuffled, move it to the new array.
-                if (i in array) {
-                    copy.push(array[i]);
-                    delete array[i];
-                    n--;
-                }
-            }
-
-            return copy;
-        }
+        // knuth fisher yates
+        function shuffle(arr) {
+		    var i, temp, j, len = arr.length;
+		    for (i = 0; i < len; i++) {
+			    j = ~~(Math.random() * (i + 1));
+			    temp = arr[i];
+			    arr[i] = arr[j];
+			    arr[j] = temp;
+		    }
+		    return arr;
+	    }
 
         // Get all cells as a 1 dimensional array
         function GetAllCells() {
@@ -194,6 +184,10 @@
                 ctx.fillStyle = getColor(grid[i][j].type);
                 ctx.fillRect(i * cellSize, j * cellSize, cellSize, cellSize);
             }
+        }
+        
+        function getCity(width, height) {
+            
         }
     </script>
 </body>
